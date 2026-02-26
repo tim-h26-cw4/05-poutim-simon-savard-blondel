@@ -4,6 +4,7 @@ export default class Poutine {
     this.types = this.element.querySelectorAll('.js-button-poutine');
     this.selectedType = '';
     this.typePicked = false;
+    this.variant = this.element.querySelector('.js-button-poutine').innerText;
 
     this.init();
   }
