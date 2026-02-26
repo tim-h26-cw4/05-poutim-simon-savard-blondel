@@ -59,5 +59,6 @@ export default class Chef {
 
     const commande = document.createElement('p');
     commande.innerText = `Nombre total de poutine(s): ${nbrPoutines}`;
+    this.container.appendChild(commande);
   }
 }

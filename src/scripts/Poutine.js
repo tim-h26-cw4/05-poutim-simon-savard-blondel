@@ -4,7 +4,7 @@ export default class Poutine {
     this.types = this.element.querySelectorAll('.js-button-poutine');
     this.selectedType = '';
     this.typePicked = false;
-    this.variant = this.element.querySelector('.js-button-poutine').innerText;
+    this.variant = '';
 
     this.init();
   }
@@ -22,17 +22,28 @@ export default class Poutine {
       type.classList.remove('is-active');
     }
 
-    this.typePicked = true;
+    if (this.typePicked) {
+      this.typePicked = false;
+      this.updatePhoto();
+    } else {
+      this.typePicked = true;
 
-    const btnClicked = element.currentTarget;
-    btnClicked.classList.add('is-active');
-    this.selectedType = btnClicked.innerText;
-    this.updatePhoto();
+      const btnClicked = element.currentTarget;
+      btnClicked.classList.add('is-active');
+      this.variant = btnClicked.innerText;
+      this.selectedType = btnClicked.innerText;
+      this.updatePhoto();
+    }
   }
 
   updatePhoto() {
     const image = this.element.querySelector('.js-image-poutine');
     image.classList.add('is-active');
     image.src = `assets/images/${this.selectedType}.png`;
+
+    if (!this.typePicked) {
+      image.classList.remove('is-active');
+      image.src = 'assets/images/poutine.png';
+    }
   }
 }
