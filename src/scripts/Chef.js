@@ -21,5 +21,18 @@ export default class Chef {
     btnOrder.addEventListener('click', this.sendOrder.bind(this));
   }
 
-  sendOrder() {}
+  sendOrder() {
+    this.container.innerHTML = '';
+    let nbrPoutines = 0;
+    for (let i = 0; i < this.menu.length; i++) {
+      const poutine = this.menu[i];
+      if (poutine.typePicked) {
+        nbrPoutines++;
+      }
+    }
+
+    const commande = document.createElement('p');
+    commande.innerText = `Nombre total de poutine(s): ${nbrPoutines}`;
+    this.container.appendChild(commande);
+  }
 }

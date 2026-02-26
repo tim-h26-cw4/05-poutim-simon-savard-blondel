@@ -3,6 +3,7 @@ export default class Poutine {
     this.element = element;
     this.types = this.element.querySelectorAll('.js-button-poutine');
     this.selectedType = '';
+    this.typePicked = false;
 
     this.init();
   }
@@ -10,7 +11,7 @@ export default class Poutine {
   init() {
     for (let i = 0; i < this.types.length; i++) {
       const type = this.types[i];
-      type.addEventListener('click', this.selectedType.bind(this));
+      type.addEventListener('click', this.selectType.bind(this));
     }
   }
 
@@ -20,15 +21,17 @@ export default class Poutine {
       type.classList.remove('is-active');
     }
 
+    this.typePicked = true;
+
     const btnClicked = element.currentTarget;
     btnClicked.classList.add('is-active');
     this.selectedType = btnClicked.innerText;
-    updatePhoto();
+    this.updatePhoto();
   }
 
   updatePhoto() {
     const image = this.element.querySelector('.js-image-poutine');
-    this.element.classList.add('is-active');
+    image.classList.add('is-active');
     image.src = `assets/images/${this.selectedType}.png`;
   }
 }
